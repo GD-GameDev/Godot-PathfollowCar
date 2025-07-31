@@ -1,0 +1,24 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1753960290
+::res://Assets/::1753960234
+::res://Assets/Audio/::1753960234
+Engine.wav::AudioStreamWAV/AudioStreamWAV::9079056402381786426::1753599348::1753599348::1::::<><><>0<>0<>46799e1613c7ffd90752a71e63660fd8<>res://.godot/imported/Engine.wav-4954f8d894fef3b04090451482dd3107.sample::
+Tires screeching.mp3::AudioStreamMP3/AudioStreamMP3::4234988236945132260::1753599348::1753599348::1::::<><><>0<>0<>ba89fb7375c0e1677578decd4b4467ad<>res://.godot/imported/Tires screeching.mp3-c693a5955519039bf208ecd516abfe29.mp3str::
+::res://Assets/Models/::1753960234
+::res://Assets/Models/Cars/::1753960234
+DodgeCharger.fbx::PackedScene/PackedScene::1879152772345306007::1753599348::1753599348::1::::<><><>0<>0<>41eb674d037e007275af79adb6c0643d<>res://.godot/imported/DodgeCharger.fbx-211f251e98d6512566d9aae0f7a10cdf.scn::
+::res://Assets/Textures/::1753960234
+::res://Assets/Textures/Particles/::1753960234
+Smoke.png::CompressedTexture2D/CompressedTexture2D::5200947540139827199::1753599348::1753599348::1::::<><><>0<>0<>4c4e18f83c1409e3baabd74e0be88beb<>res://.godot/imported/Smoke.png-33845147a545099c199c077ec598a9a6.s3tc.ctex::
+::res://Assets/Textures/Prototype/::1753960234
+prototypeBlack.png::CompressedTexture2D/CompressedTexture2D::4148913431280417704::1753599348::1753599348::1::::<><><>0<>0<>c98c61579565ed2cb09d3634fb41e9d6<>res://.godot/imported/prototypeBlack.png-c587aa7caad43a84cc678d0ae099a8d7.s3tc.ctex::
+::res://Scenes/::1753960234
+bot.tscn::PackedScene::8663837643996124260::1753959011::0::1::::<><><>0<>0<><>::uid://bqsuxw5b5rpr4::::res://Scripts/PathFollowAI.gd
+BotTestScene.tscn::PackedScene::1229347739878888494::1753959011::0::1::::<><><>0<>0<><>::uid://b0d0860ljnkom::::res://Assets/Textures/Prototype/prototypeBlack.png<>uid://dvo3e1cgoe3fk::::res://Scenes/bot.tscn<>uid://bfwncdo0j0uqy::::res://Scripts/FollowCamera.gd<>uid://dhxxxx7dsc4lf::::res://Scripts/path_follow_3d.gd
+player.tscn::PackedScene::2356031903211984841::1753959011::0::1::::<><><>0<>0<><>::uid://d3mm3g0kx7fjj::::res://Scripts/CarController.gd<>uid://bfwncdo0j0uqy::::res://Scripts/FollowCamera.gd<>uid://cgdm31d3fikh0::::res://Assets/Textures/Particles/Smoke.png<>uid://d2l7y50obq17c::::res://Assets/Audio/Engine.wav<>uid://b1lpvw8g5cbsm::::res://Assets/Audio/Tires screeching.mp3
+test_scene.tscn::PackedScene::8204699951505945484::1753959011::0::1::::<><><>0<>0<><>::uid://b0d0860ljnkom::::res://Assets/Textures/Prototype/prototypeBlack.png<>uid://8tjrbofpq6ft::::res://Scenes/player.tscn
+::res://Scripts/::1753960234
+CarController.gd::GDScript/GDScript::9150101166382026943::1753599349::0::1::::<>VehicleBody3D<><>0<>0<><>::
+FollowCamera.gd::GDScript::2783574285312583040::1753956918::0::1::::<>Node3D<><>0<>0<><>::
+PathFollowAI.gd::GDScript/GDScript::3547857596533884323::1753789454::0::1::::<>VehicleBody3D<><>0<>0<><>::
+path_follow_3d.gd::GDScript/GDScript::7699503466613613439::1753554327::0::1::::<>PathFollow3D<><>0<>0<><>::

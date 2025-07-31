@@ -1,0 +1,14 @@
+Node3D
+MeshInstance3D
+PathFollow3D
+CSGPolygon3D
+Path3D
+AnimationPlayer
+SpotLight3D
+Camera3D
+CSGBox3D
+OmniLight3D
+VoxelGI
+VehicleBody3D
+AudioStreamPlayer
+Node

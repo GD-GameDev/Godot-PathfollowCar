@@ -1,0 +1,110 @@
+[gd_scene load_steps=14 format=3 uid="uid://rrrgbm8jl13g"]
+
+[ext_resource type="Texture2D" uid="uid://b0d0860ljnkom" path="res://Assets/Textures/Prototype/prototypeBlack.png" id="1_4m4q5"]
+[ext_resource type="PackedScene" uid="uid://dvo3e1cgoe3fk" path="res://Scenes/bot.tscn" id="2_46k60"]
+[ext_resource type="Script" uid="uid://bfwncdo0j0uqy" path="res://Scripts/FollowCamera.gd" id="3_46k60"]
+[ext_resource type="Script" uid="uid://dhxxxx7dsc4lf" path="res://Scripts/path_follow_3d.gd" id="3_v3s1p"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v3s1p"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_aqh30"]
+sky_material = SubResource("ProceduralSkyMaterial_v3s1p")
+
+[sub_resource type="Environment" id="Environment_h1qoc"]
+background_mode = 2
+sky = SubResource("Sky_aqh30")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0pwr"]
+albedo_texture = ExtResource("1_4m4q5")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_28doq"]
+size = Vector2(200, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wrt0s"]
+data = PackedVector3Array(100, 0, 100, -100, 0, 100, 100, 0, -100, -100, 0, 100, -100, 0, -100, 100, 0, -100)
+
+[sub_resource type="Curve3D" id="Curve3D_kp16b"]
+_data = {
+"points": PackedVector3Array(-20.2955, 0, -15.7639, 20.2955, 0, 15.7639, 50.0034, 0, -34.242, -0.450821, 0, -22.1354, 0.450821, 0, 22.1354, 83.3242, 0, 12.8461, -4.31104, 0, -33.3015, 4.31104, 0, 33.3015, -16.2392, 0, 44.3712, -14.6585, 0, -41.8038, 14.6585, 0, 41.8038, 63.5089, 0, 82.0079, 58.7567, 0, 21.0524, -58.7567, 0, -21.0524, -59.3905, 0, 179.768, -28.3857, 0, 44.8173, 28.3857, 0, -44.8173, -173.67, 0, 67.8333, -44.7992, 0, 21.9689, 44.7992, 0, -21.9689, -126.672, 0, -33.8085, -33.8212, 0, -4.15695, 33.8212, 0, 4.15695, -18.9533, 0, -54.6504),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[sub_resource type="SphereMesh" id="SphereMesh_mpvff"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0nmvo"]
+albedo_color = Color(0.381662, 1, 0.142713, 1)
+emission_enabled = true
+emission = Color(0.276384, 1, 0, 1)
+emission_energy_multiplier = 4.05
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h1qoc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_g0pwr")
+mesh = SubResource("PlaneMesh_28doq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wrt0s")
+
+[node name="Bot" parent="." node_paths=PackedStringArray("PathPoint") instance=ExtResource("2_46k60")]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 39.8734, 0.000695825, -38.207)
+mass = 70.0
+PathPoint = NodePath("../Path/PathFollow3D/PathPoint")
+MaxSpeed = 500
+Ifactor = 0.02
+
+[node name="Node3D" type="Node3D" parent="Bot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161545, 5.29365, -0.602886)
+
+[node name="Path" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.271469, 0, 0)
+curve = SubResource("Curve3D_kp16b")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path" node_paths=PackedStringArray("Follower")]
+transform = Transform3D(-0.613415, 0, -0.789752, 0, 0.999994, 0, 0.789751, 0, -0.613415, 50.0034, 0, -34.242)
+script = ExtResource("3_v3s1p")
+Speed = 10
+Follower = NodePath("../../Bot")
+minDistance = 15
+
+[node name="PathPoint" type="Node3D" parent="Path/PathFollow3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path/PathFollow3D/PathPoint"]
+mesh = SubResource("SphereMesh_mpvff")
+surface_material_override/0 = SubResource("StandardMaterial3D_0nmvo")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("Target", "LookAtNode")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.5662, 0)
+script = ExtResource("3_46k60")
+Target = NodePath("../Bot/Node3D")
+LookAtNode = NodePath("../Bot")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.658466, 0)
+mode = 2
+path_node = NodePath("../Path")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
